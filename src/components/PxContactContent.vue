@@ -10,17 +10,31 @@
     </div>
     <div class="contact">
       <div class="contact-form">
-        <form action="" id="form">
+        <form
+          action="https://submit-form.com/odH3Ocuo"
+          @submit.prevent="submitForm"
+          id="form"
+        >
           <div class="row">
             <div class="input50">
-              <input type="text" id="name" placeholder="Nombre(s)" />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Nombre(s)"
+              />
               <i class="fas fa-check-circle"></i>
               <i class="fas fa-exclamation-circle"></i>
               <small>Mensajes de error</small>
             </div>
 
             <div class="input50">
-              <input type="text" id="lastname" placeholder="Apellido(s)" />
+              <input
+                type="text"
+                id="lastname"
+                name="lastname"
+                placeholder="Apellido(s)"
+              />
               <i class="fas fa-check-circle"></i>
               <i class="fas fa-exclamation-circle"></i>
               <small>Mensajes de error</small>
@@ -29,14 +43,24 @@
 
           <div class="row">
             <div class="input50">
-              <input type="email" id="email" placeholder="Correo electronico" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Correo electronico"
+              />
               <i class="fas fa-check-circle"></i>
               <i class="fas fa-exclamation-circle"></i>
               <small>Mensajes de error</small>
             </div>
 
             <div class="input50">
-              <input type="text" id="subject" placeholder="Asunto" />
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Asunto"
+              />
               <i class="fas fa-check-circle"></i>
               <i class="fas fa-exclamation-circle"></i>
               <small>Mensajes de error</small>
@@ -44,7 +68,11 @@
           </div>
           <div class="row">
             <div class="input100">
-              <textarea id="message" placeholder="Mensaje"></textarea>
+              <textarea
+                id="message"
+                placeholder="Mensaje"
+                name="message"
+              ></textarea>
               <i class="fas fa-check-circle"></i>
               <i class="fas fa-exclamation-circle"></i>
               <small>Mensajes de error</small>
@@ -85,6 +113,34 @@
     </div>
   </section>
 </template>
+
+<script>
+const FORMSPARK_API = `https://submit-form.com/odH3Ocuo`;
+export default {
+  data() {
+    return {
+      message: "",
+    };
+  },
+
+  methods: {
+    async submitForm() {
+      await fetch(FORMSPARK_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          message: this.message,
+        }),
+      }).then(() => {
+        alert("Envio de Mensaje");
+      });
+    },
+  },
+};
+</script>
 
 <style scoped>
 .contact {
